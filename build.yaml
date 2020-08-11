@@ -1,0 +1,9 @@
+builders:
+  protobufBuilder:
+    import: "package:proto_builder/proto_builder.dart"
+    builder_factories: ["buildProtobuf"]
+    build_extensions:
+      .proto:
+        - .dart
+    build_to: cache
+    auto_apply: root_package
