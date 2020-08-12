@@ -1,4 +1,4 @@
-import 'package:proto_builder/proto_builder.dart';
+import 'package:proto_builder/builder.dart';
 import 'package:test/test.dart';
 
 // void main() {

@@ -1,9 +1,12 @@
 builders:
   protobufBuilder:
-    import: "package:proto_builder/proto_builder.dart"
+    import: "package:proto_builder/builder.dart"
     builder_factories: ["buildProtobuf"]
     build_extensions:
       .proto:
-        - .dart
-    build_to: cache
+        - .pb.dart,
+        - .pbenum.dart
+        - .pbgrpc.dart
+        - .pbjson.dart
+    build_to: source
     auto_apply: root_package

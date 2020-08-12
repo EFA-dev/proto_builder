@@ -7,7 +7,7 @@ import 'package:path/path.dart' as p;
 class ProtobufBuilder implements Builder {
   @override
   Map<String, List<String>> get buildExtensions => {
-        '.proto': ['.dart']
+        '.proto': ['.pb.dart, .pbenum.dart, .pbgrpc.dart, .pbjson.dart']
       };
 
   @override
