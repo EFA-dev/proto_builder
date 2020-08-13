@@ -9,4 +9,4 @@ builders:
         - .pbgrpc.dart
         - .pbjson.dart
     build_to: source
-    auto_apply: root_package
+    auto_apply: dependents

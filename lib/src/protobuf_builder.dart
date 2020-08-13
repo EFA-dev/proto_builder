@@ -5,15 +5,24 @@ import 'package:build/build.dart';
 import 'package:path/path.dart' as p;
 
 class ProtobufBuilder implements Builder {
+  final BuilderOptions options;
+
+  ProtobufBuilder(this.options);
+
   @override
   Map<String, List<String>> get buildExtensions => {
         '.proto': ['.pb.dart, .pbenum.dart, .pbgrpc.dart, .pbjson.dart']
       };
 
   @override
-  Future<dynamic> build(BuildStep buildStep) async {
-    //
-    final filePath = p.relative(buildStep.inputId.path);
+  Future<bool> build(BuildStep buildStep) async {
+    var assetPath = buildStep.inputId.path;
+    log.info('*************' + assetPath);
+    return await buildFile(assetPath);
+  }
+
+  Future<bool> buildFile(String path) async {
+    final filePath = p.relative(path);
     final protoFileName = p.withoutExtension(filePath).split('/').last;
     final outputPath = './lib/protos/src/$protoFileName';
 
@@ -25,7 +34,6 @@ class ProtobufBuilder implements Builder {
       await outputDir.delete(recursive: true);
     }
 
-    await Future.delayed(Duration(seconds: 1));
     if (outputDir.existsSync() == false) {
       await outputDir.create(recursive: true);
     }
@@ -35,10 +43,15 @@ class ProtobufBuilder implements Builder {
     final code = await process.exitCode;
 
     if (code != 0) {
-      log.severe('Error');
-      return;
+      var logFilePath = outputPath + '/$protoFileName.txt';
+      log.severe('Error Log: $logFilePath');
+      var logFile = File(logFilePath);
+      logFile.writeAsStringSync(process.stdout);
+      return Future.value(false);
     } else {
-      log.fine('OK!');
+      log.finest('Completed: ************* $path');
     }
+
+    return Future.value(true);
   }
 }
