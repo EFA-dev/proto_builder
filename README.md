@@ -1,6 +1,6 @@
 # What does it do?
 This package will find the .proto files contained in your project and convert them into **Dart** files. <br/>
-It uses [**protoc_plugin**](https://github.com/dart-lang/protobuf/tree/master/protoc_plugin) to do this.
+It uses [**protoc_plugin**](https://github.com/dart-lang/protobuf/tree/master/protoc_plugin) (Thanks) to do this.
 
 # How to use?
 You can use the package in two different ways.
@@ -19,10 +19,10 @@ The process takes a little longer if you use it with the build_runner package. B
 `pub run build_runner build --verbose`
 
 # Output Settings
-
-You can set it from the pubspec.yaml file to save the generated files wherever you want.
+You can set it from the **pubspec.yaml** file to save the generated files wherever you want.
 If you wish, you can save it in separate folders according to the .proto files.
-To make these settings, simply add the following codes to your pubspec.yaml file.
+To make these settings, simply add the following codes to your **pubspec.yaml** file.
+The files created are saved in the **lib/protos/src/** folder by default.
 
 ```
 proto_builder:
