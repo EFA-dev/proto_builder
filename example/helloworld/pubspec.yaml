@@ -1,0 +1,22 @@
+name: helloworld
+description: Dart gRPC sample client and server.
+homepage: https://github.com/dart-lang/grpc-dart
+
+environment:
+  sdk: ">=2.2.0 <3.0.0"
+
+dependencies:
+  async: ^2.2.0
+  grpc:
+  protobuf: ^1.0.1
+
+dev_dependencies:
+  build_runner: ^1.10.1
+  proto_builder:
+    path: ../../../proto_builder/
+    # git:
+    #   url: https://github.com/efa-dev/proto_builder.git
+
+proto_builder:
+  outputPath: lib/grpc/
+  seperateFolder: true
