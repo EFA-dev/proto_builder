@@ -8,5 +8,5 @@ builders:
         - .pbenum.dart
         - .pbgrpc.dart
         - .pbjson.dart
-    build_to: source
+    build_to: cache
     auto_apply: dependents
