@@ -1,5 +1,5 @@
 # What does it do?
-This package will find the .proto files contained in your project and convert them into **Dart** files. <br/>
+This package will find the .proto files contained in your project(lib folder) and convert them into **Dart** files for **gRPC.** <br/>
 It uses [**protoc_plugin**](https://github.com/dart-lang/protobuf/tree/master/protoc_plugin) (Thanks) to do this.
 
 # How to use?
