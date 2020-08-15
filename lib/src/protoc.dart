@@ -14,7 +14,7 @@ class Protoc {
   final Logger log = Logger.root;
 
   Future<BuildResult> buildFile(String filePath) async {
-    log.info('************* $filePath Processing');
+    log.info('*** Processing *** $filePath');
 
     var userOptions = await pubspecOptions;
 
@@ -50,7 +50,7 @@ class Protoc {
       logFile.writeAsStringSync(process.stdout);
       return Future.value(BuildResult(filePath, false));
     } else {
-      log.finer('************* $filePath Completed');
+      log.finer('### Completed ### ${outputPath}');
     }
 
     return Future.value(BuildResult(filePath, true));
@@ -62,10 +62,11 @@ class Protoc {
       var fileContent = pubspecFile.readAsStringSync();
       YamlMap pubspec = loadYaml(fileContent);
       if (pubspec != null && pubspec is Map) {
-        if (pubspec['proto_builder'] == null) {
-          _chachedOptions = PubspecOptions();
+        if (pubspec['proto_builder'] != null) {
+          var protoBuilder = pubspec['proto_builder'];
+          _chachedOptions = PubspecOptions.fromJson(protoBuilder);
         } else {
-          _chachedOptions = PubspecOptions.fromJson(pubspec['proto_builder']);
+          _chachedOptions = PubspecOptions();
         }
       }
     }
